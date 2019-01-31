@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_31_211417) do
+ActiveRecord::Schema.define(version: 2019_01_31_231452) do
 
-  create_table "requests", force: :cascade do |t|
+  create_table "beerchecks", force: :cascade do |t|
     t.float "tempurature"
     t.boolean "is_farenheit"
     t.float "abv"

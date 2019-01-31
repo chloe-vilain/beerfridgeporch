@@ -1,4 +1,4 @@
-class Request < ApplicationRecord
+class Beercheck < ApplicationRecord
   attr_accessor :tempurature, :is_farenheit, :abv
 
 
