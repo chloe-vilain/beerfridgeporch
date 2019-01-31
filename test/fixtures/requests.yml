@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tempurature: 1.5
+  is_farenheit: false
+  abv: 1.5
+
+two:
+  tempurature: 1.5
+  is_farenheit: false
+  abv: 1.5

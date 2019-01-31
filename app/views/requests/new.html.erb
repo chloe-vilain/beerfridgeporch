@@ -1,0 +1,18 @@
+<h1>Should I leave my beer outside?</h1>
+<%= form_for(@request) do |f| %>
+
+  <%= f.label :tempurature, "Tempurature" %>
+  <%= f.text_field :tempurature, class: 'form-control' %>
+
+  <%= f.radio_button(:is_farenheit, true) %>
+  <%= f.label(:is_farenheit, "Farenheit") %>
+  
+  <%= f.radio_button(:is_farenheit, false) %>
+  <%= f.label(:is_farenheit, "Celcius") %>
+
+  <%= f.label :abv, "Alcohol by volume" %>
+  <%= f.text_field :abv, class: 'form-control' %>
+
+  <%= f.submit "Submit"%>
+
+<% end %>
