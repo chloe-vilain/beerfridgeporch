@@ -1,1 +1,7 @@
 <%= @beercheck.tempurature %>, <%= @beercheck.is_farenheit %>, <%= @beercheck.abv %>
+
+<% if @beercheck.can_leave_out %>
+<p> You can put your beer on the porch!</p>
+<% else %>
+<p> You can't put your beer on the porch :( </p>
+<% end %>

@@ -5,7 +5,10 @@ class BeerchecksController < ApplicationController
   end
 
   def create
-    @beercheck = Beercheck.new(beercheck_params)
+    a = beercheck_params
+    logger.debug("beercheck_params #{a}")
+    @beercheck = Beercheck.new(a)
+    logger.debug("beercheck object #{@beercheck.attributes}")
     if @beercheck.save
       redirect_to @beercheck
     else
