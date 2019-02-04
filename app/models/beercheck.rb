@@ -6,7 +6,7 @@ class Beercheck < ApplicationRecord
   end
 
   def can_leave_out
-    if convert_to_farenheit > 28.0 ? true : false
+    convert_to_farenheit > 28.0 ? true : false
   end
 
 end
