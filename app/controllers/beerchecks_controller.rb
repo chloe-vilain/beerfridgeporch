@@ -1,14 +1,13 @@
 class BeerchecksController < ApplicationController
 
+
   def new
     @beercheck = Beercheck.new
   end
 
   def create
     a = beercheck_params
-    logger.debug("beercheck_params #{a}")
     @beercheck = Beercheck.new(a)
-    logger.debug("beercheck object #{@beercheck.attributes}")
     if @beercheck.save
       redirect_to @beercheck
     else
@@ -18,6 +17,9 @@ class BeerchecksController < ApplicationController
 
   def show
     @beercheck = Beercheck.find(params[:id])
+    @url = Owm_weather.build_weather_request("02134", "us")
+    @weather = Owm_weather.get_weather_data(@url)
+    @weather_hash = Owm_weather.parse_weather(@weather)
   end
 
 
