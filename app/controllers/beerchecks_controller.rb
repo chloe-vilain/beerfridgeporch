@@ -1,5 +1,5 @@
 class BeerchecksController < ApplicationController
-
+  include Chemistry
 
   def new
     @beercheck = Beercheck.new
@@ -17,16 +17,17 @@ class BeerchecksController < ApplicationController
 
   def show
     @beercheck = Beercheck.find(params[:id])
-    @url = Owm_weather.build_weather_request("02134", "us")
-    @weather = Owm_weather.get_weather_data(@url)
-    @weather_hash = Owm_weather.parse_weather(@weather)
+    url = Owm_weather.build_weather_request(@beercheck.zip, @beercheck.country)
+    weather = Owm_weather.get_weather_data(url)
+    @tempurature = Owm_weather.parse_weather(weather)
+    @can_leave_out = Chemistry.can_leave_out(@tempurature)
   end
 
 
   private
 
     def beercheck_params
-      params.require(:beercheck).permit(:tempurature, :is_farenheit, :abv)
+      params.require(:beercheck).permit(:country, :zip, :abv)
     end
 
 end
