@@ -1,5 +1,5 @@
 <h1>Should I leave my beer outside?</h1>
-<%= form_for(@beercheck) do |f| %>
+<%= form_with url: "/results", scope: :post, local: true do |f| %>
 
   <%= f.label :country, "Country" %>
   <%= f.text_field :country, class: 'form-control' %>
