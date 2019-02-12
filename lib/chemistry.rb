@@ -1,4 +1,5 @@
 module Chemistry
+  require 'logger'
 
 #Helpful functions
   def self.convert_kelvin_to_celcius(kelvin)
@@ -11,6 +12,7 @@ module Chemistry
 
 #Core logic
   def self.can_leave_out(tempurature)
+    Rails.logger.debug "The tempurature is #{tempurature}"
     if tempurature < 28
       "Don't put your beer outside! It may freeze."
     elsif tempurature < 38

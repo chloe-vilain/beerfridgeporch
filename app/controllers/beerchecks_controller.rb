@@ -5,12 +5,11 @@ class BeerchecksController < ApplicationController
   end
 
   def show
-    url = Owm_weather.build_weather_request(params[:post][:zip], params[:post][:country])
-    weather = Owm_weather.get_weather_data(url)
-    @tempurature = Owm_weather.parse_weather(weather)
-    @can_leave_out = Chemistry.can_leave_out(@tempurature)
+    url = Owm_weather.build_forecast_request_multiday(params[:post][:zip], params[:post][:country])
+    forecast = Owm_weather.get_forecast_data(url)
+    @tempurature_forecast = Owm_weather.parse_forecast_multiday(forecast)
+    @can_leave_out = Chemistry.can_leave_out(@tempurature_forecast[0])
     render 'show'
   end
-
 
 end
