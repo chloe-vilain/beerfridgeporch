@@ -1,4 +1,20 @@
-<p>The forecast is
-<%= @tempurature_forecast %>
+<h1> Weather right now </h1>
+<p> The current tempurature is
+  <%= "#{@weather_viewable[:tempurature]}. " %>
+  <%= @weather_viewable[:can_leave_out] %>
 </p>
-<%= @can_leave_out %>
+<h1> Upcoming forecast </h1>
+<table>
+  <tr>
+    <td> Time </td>
+    <td> Tempurature </td>
+    <td> Ok to leave out? </td>
+  </tr>
+  <% @forecast_viewable.each do |i| %>
+    <tr>
+      <td> <%= i[:timestamp] %> </td>
+      <td> <%= i[:tempurature] %> </td>
+      <td> <%= i[:can_leave_out] %> </td>
+    </tr>
+  <% end %>
+</table>

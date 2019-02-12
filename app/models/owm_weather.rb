@@ -22,14 +22,14 @@ class Owm_weather
   #soft-deprecated in favor of multiday parser
   def self.parse_weather(data)
     hash = JSON.parse data
-    Chemistry.convert_kelvin_to_farenheit(hash["main"]["temp"])
+    {timestamp: hash["dt"], tempurature: Chemistry.convert_kelvin_to_farenheit(hash["main"]["temp"])}
   end
 
   def self.parse_forecast_multiday(data)
     hash = JSON.parse data
     forecast = Array.new
     hash["list"].each do |i|
-      forecast << Chemistry.convert_kelvin_to_farenheit(i["main"]["temp"])
+      forecast << {timestamp: i["dt"], tempurature: Chemistry.convert_kelvin_to_farenheit(i["main"]["temp"])}
     end
     return forecast
   end
