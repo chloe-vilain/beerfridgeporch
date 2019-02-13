@@ -8,7 +8,7 @@
   <%= f.text_field :zip, class: 'form-control' %>
 
   <%= f.label :abv, "Alcohol by volume" %>
-  <%= f.text_field :abv, class: 'form-control' %>
+  <%= f.number_field :abv, class: 'form-control', step: :any %>
 
   <%= f.submit "Submit"%>
 
