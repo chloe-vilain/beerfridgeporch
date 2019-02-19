@@ -2,21 +2,24 @@ module BeercheckHelper
   include Chemistry
 
 
-  def forecast_view_generator(forecast, abv)
+  def forecast_view_generator(forecast, abv, tempurature_array)
     forecast_view = Array.new
-    tempurature_array = Array.new
-    #beer_tempurature = Chemistry.calculate_beer_tempurature_over_time_vector(180, weather[:tempurature], 5, :bottle_12oz)
-    forecast.each do |i|
-      forecast_view << weather_view_generator(i, abv)
+    i = forecast[0][:timestamp]/60 % 180
+    Rails.logger.debug(tempurature_array.size)
+    forecast.each do |data|
+      forecast_view << weather_view_generator(data, abv, tempurature_array[i])
+      i += 180
     end
+    Rails.logger.debug(i)
     return forecast_view
   end
 
-  def weather_view_generator(weather, abv)
+  def weather_view_generator(weather, abv, beer_temp)
     {
-    tempurature: weather[:tempurature].round(1),
+    tempurature: Chemistry.convert_celcius_to_farenheit(weather[:tempurature]).round(1),
     timestamp: Time.at(weather[:timestamp]).to_datetime.to_formatted_s(:short),
-    can_leave_out: Chemistry.can_leave_out(weather[:tempurature], abv)
+    can_leave_out: Chemistry.can_leave_out(weather[:tempurature], abv),
+    beer_tempurature: Chemistry.convert_celcius_to_farenheit(beer_temp).round(1)
     }
   end
 

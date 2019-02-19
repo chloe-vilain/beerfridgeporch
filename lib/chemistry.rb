@@ -34,27 +34,27 @@ module Chemistry
     0.00-(1.45*abv.to_f/(0.05*(100.00-abv.to_f)))
   end
 
-  def self.calculate_beer_tempurature_over_time_vector(timestep_size, t_surrounding_array, t_start, bottle_type)
+  def self.calculate_beer_tempurature_over_time_vector(t_surrounding_array, t_start, bottle_type)
     bottle = @Bottle_properties[bottle_type]
     r_cooling = 1/(@Cp_beer/(bottle[:h_coeff]*bottle[:volume]*@Density_beer))
     beer_tempuratures = [t_start ]
     t_surrounding_array.each do |t_surrounding|
-      beer_tempuratures << calculate_beer_tempurature_over_timestep(t_surrounding, beer_tempuratures.last, r_cooling, timestep_size)
+      beer_tempuratures << calculate_beer_tempurature_over_timestep(t_surrounding, beer_tempuratures.last, r_cooling)
     end
   end
 
   #Use Newton's Law of Cooling to calculate tempurature of beer assuming constant tempurature
-  def self.calculate_beer_tempurature_over_timestep(t_surrounding, t_start, r_cooling, timestep_size)
-    t_surrounding + (t_start - t_surrounding) * exp(r_cooling * t_elapsed)
+  def self.calculate_beer_tempurature_over_timestep(t_surrounding, t_start, r_cooling)
+    t_surrounding + (t_start - t_surrounding) * Math.exp(r_cooling)
   end
 
 #Core logic
   def self.can_leave_out(tempurature_farenheit, abv)
-    if tempurature_farenheit < convert_celcius_to_farenheit(calculate_freezing_point_celcius(abv))
+    if tempurature_farenheit < calculate_freezing_point_celcius(abv)
       "Don't put your beer outside! It may freeze."
-    elsif tempurature_farenheit < 38
+    elsif tempurature_farenheit < 5
       "It's colder than a fridge outside, but above freezing tempurature for beer"
-    elsif tempurature_farenheit < 50
+    elsif tempurature_farenheit < 10
       "It is the perfect tempurature outside to chill your beers!"
     else
       "It is too warm to leave your beer outside"

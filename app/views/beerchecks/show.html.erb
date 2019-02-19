@@ -8,12 +8,14 @@
   <tr>
     <td> Time </td>
     <td> Tempurature </td>
+    <td> Beer tempurature </td>
     <td> Ok to leave out? </td>
   </tr>
   <% @forecast_viewable.each do |i| %>
     <tr>
       <td> <%= i[:timestamp] %> </td>
       <td> <%= i[:tempurature] %> </td>
+      <td> <%= i[:beer_tempurature] %> </td>
       <td> <%= i[:can_leave_out] %> </td>
     </tr>
   <% end %>
