@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/info', to: 'static_pages#info'
+  get '/help', to:'static_pages#help'
   root 'beerchecks#new'
   post '/results', to: 'beerchecks#show'
 
