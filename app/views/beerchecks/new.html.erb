@@ -3,13 +3,24 @@
 
   <%= f.label :country, "Country" %>
   <%= f.text_field :country, class: 'form-control' %>
-
+  <br>
   <%= f.label :zip, "ZIP" %>
   <%= f.text_field :zip, class: 'form-control' %>
-
+  <br>
   <%= f.label :abv, "Alcohol by volume" %>
   <%= f.number_field :abv, class: 'form-control', step: :any %>
-
+  <br>
+  <%= f.label :bottle_type, "Type of container" %>
+  <br>
+  <%= f.label :bottle_type, "12 oz bottle" %>
+  <%= f.radio_button :bottle_type, :bottle_12oz, :checked => true %>
+  <br>
+  <%= f.label :bottle_type, "12 oz can" %>
+  <%= f.radio_button :bottle_type, :can_12oz %>
+  <br>
+  <%= f.label :bottle_type, "16 oz can" %>
+  <%= f.radio_button :bottle_type, :can_16oz %>
+  <br>
   <%= f.submit "Submit"%>
 
 <% end %>
