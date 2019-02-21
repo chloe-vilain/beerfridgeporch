@@ -8,3 +8,19 @@ calculations, and your feedback helps us get there.</p>
 <p>Note: Beer Fridge Porch is an open-source project, and we invite contributions!
   Find us on
   <%= link_to "Github", "https://github.com/chloe-vilain/beerfridgeporch" %>. </p>
+  <h2> Feedback Form </h2>
+  <%= form_with url: "/help", scope: :post, local: true do |f| %>
+  <%= f.label :subject, "Message subject" %>
+  <%= f.select :subject, options_for_select([['Beer forecast was innacurate', 1],
+                                                 ['Technical errors in the website', 2],
+                                                 ['General feedback', 3],
+                                                 ['I would like to help with the project', 4],
+                                                 ['Other', 5]]) %>
+  <br>
+  <%= f.text_area :message, placeholder: "Message content. If you are reporting an issue with the site or your
+                                  beer forecast, please provide as many details as possible to help
+                                  us diagnose the issue.", cols: 60, rows: 20 %>
+  <br>
+  <%= f.submit "Submit"%>
+
+  <% end %>
